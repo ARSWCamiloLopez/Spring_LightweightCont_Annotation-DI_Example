@@ -3,33 +3,37 @@ package edu.eci.arsw.springdemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+/**
+ *
+ * @author camilolopez
+ */
+@Service
 public class GrammarChecker {
 
-	SpellChecker sc;
+    @Autowired
+    SpellChecker sc;
 
-	String x;
-        
-        
-	public SpellChecker getSpellChecker() {
-		return sc;
-	}
+    String x;
 
-	public void setSpellChecker(SpellChecker sc) {
-		this.sc = sc;
-	}
+    /**
+     *
+     * @param text
+     * @return
+     */
+    public String check(String text) {
 
+        StringBuffer sb = new StringBuffer();
+        sb.append("Spell checking output:" + sc.checkSpell(text));
+        sb.append("Plagiarism checking output: Not available yet");
 
-	public String check(String text){
-		
-		StringBuffer sb=new StringBuffer();
-		sb.append("Spell checking output:"+sc.checkSpell(text));
-		sb.append("Plagiarism checking output: Not available yet");
-		
-		
-		return sb.toString();
-		
-	}
-	
-	
+        return sb.toString();
+    }
+
+    public SpellChecker getSpellChecker() {
+        return sc;
+    }
+
+    public void setSpellChecker(SpellChecker sc) {
+        this.sc = sc;
+    }
 }
